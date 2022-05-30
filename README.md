@@ -108,6 +108,14 @@ Un « protocol » différent de `up` indique la plupart du temps que l’interfa
 
 **Réponse :**  
 
+Nous n'avons eu aucun problème. Tous les appareils sont bel et bien activés et reliés aux bonnes adresses IP.
+
+![Etat des interfaces](images/etat-interfaces.png)
+
+Par ailleurs, nous avons vérifié que le serveur DHCP soit configuré correctement et avons donner une adresse à la machine VPC à l'aide du DHCP.
+
+![IP VPC](images/ip-vpc.png)
+
 ---
 
 
@@ -145,6 +153,10 @@ Pour votre topologie il est utile de contrôler la connectivité entre :
 
 **Réponse :**  
 
+L'intégralité des pings fonctionnent parfaitement.
+
+![Résultats des Pings](images/ping-works.png)
+
 ---
 
 - Activation de « debug » et analyse des messages ping.
@@ -167,6 +179,8 @@ Pour déclencher et pratiquer les captures vous allez « pinger » votre routeur
 ---
 
 **Screenshots :**  
+
+![Captures Debug et Wireshark](images/icmp-debug.png)
 
 ---
 
