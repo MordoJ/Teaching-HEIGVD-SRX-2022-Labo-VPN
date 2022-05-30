@@ -155,7 +155,7 @@ Pour votre topologie il est utile de contrôler la connectivité entre :
 
 L'intégralité des pings fonctionnent parfaitement.
 
-![Résultats des Pings](images/ping-works.png)
+![Résultats des Pings](images/pings-work.png)
 
 ---
 
