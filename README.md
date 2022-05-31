@@ -253,6 +253,27 @@ Vous pouvez consulter l’état de votre configuration IKE avec les commandes su
 
 **Réponse :**  
 
+```shell
+RX2#show crypto isakmp policy
+
+Global IKE policy
+Protection suite of priority 10
+        encryption algorithm:   Three key triple DES
+        hash algorithm:         Message Digest 5
+        authentication method:  Pre-Shared Key
+        Diffie-Hellman group:   #2 (1024 bit)
+        lifetime:               1800 seconds, no volume limit
+Protection suite of priority 20
+        encryption algorithm:   AES - Advanced Encryption Standard (256 bit keys).
+        hash algorithm:         Secure Hash Standard
+        authentication method:  Pre-Shared Key
+        Diffie-Hellman group:   #5 (1536 bit)
+        lifetime:               1800 seconds, no volume limit
+RX2#
+```
+
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+
 ---
 
 
