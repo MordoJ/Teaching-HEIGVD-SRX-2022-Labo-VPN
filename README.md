@@ -325,7 +325,7 @@ default      193.100.100.1                               cisco-1
 RX2#
 ```
 
-La commande affiche la clé qui est partagée entre les deux routeurs. Dans notre cas, c'est la clé «_cisco-1_».
+La commande affiche les clés qui sont partagées entre les routeurs. Dans notre cas, c'est la clé «_cisco-1_».
 
 ---
 
@@ -499,21 +499,16 @@ Pourtant, lorsqu'on vérifie les paquets sniffés sur la sortie du routeur RX2 v
 
 ![icmp-request-transformed-in-encrypted-ESP](./images/icmp-request-transformed-in-encrypted-ESP.png)
 
-Par ailleurs, on peut voir que, juste avant les paquets ESP, il y a des paquets ISAKMP qui sont envoyés vers le routeur RX1 pour initialiser la session IKE.
+Par ailleurs, on peut voir que, juste avant les paquets ESP, il y a des paquets ISAKMP qui sont envoyés vers le routeur RX1 pour initialiser la session IKE.\
+Tout d'abord en _Main Mode_, puis en _Quick Mode_.
 
 ![isakmp-request-sent-to-rx1](./images/isakmp-request-sent-to-rx1.png)
 
+Les requêtes ICMP du client sont encapsulées dans des paquets ESP avec un payload chiffré.
 
-Définition ESP :
-définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
+Ceux-ci sont reçus par le routeur RX1 et déchiffrés, c'est pour ça qu'on voit les vraies requêtes ICMP sur le debug.
 
-Définition requête ISAKMP:
-définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
-
-Pourquoi ICMP est convertie en ESP :
-définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
-
-etc...
+La connexion IPSec est correctement établie et fonctionnelle.
 
 Un fichier `.pcapng` a été sauvegardé dans le dossier [`files`](./files/ICMP_after_encryption.pcapng) pour voir en détail le trafic récupéré sur la sortie du routeur.
 
