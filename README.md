@@ -561,7 +561,7 @@ Ainsi que le protocole ESP (Encapsulation Security Payload) pour l'encapsulation
 
 Les protocoles sont visibles dans la `crypto map` :
 
-![crypto-map](./images/proof-protocols-used.png)
+![crypto-map-protocol-used](./images/proof-protocols-used.png)
 
 ---
 
@@ -571,6 +571,10 @@ Les protocoles sont visibles dans la `crypto map` :
 ---
 
 **Réponse :**  
+
+Nous utilisons le mode tunnel comme démontrer dans la configuration utilisé dans la `crypto map` et ceux disponibles dans la `ipsec transform-set`. :
+
+![crypto-map-mode-tunnel](./images/using-tunnel.png)
 
 ---
 
