@@ -563,6 +563,8 @@ Les protocoles sont visibles dans la `crypto map` :
 
 ![crypto-map-protocol-used](./images/proof-protocols-used.png)
 
+(La configurtion utilisée est la même sur R1)
+
 ---
 
 
@@ -576,6 +578,8 @@ Nous utilisons le mode tunnel comme démontrer dans la configuration utilisé da
 
 ![crypto-map-mode-tunnel](./images/using-tunnel.png)
 
+(La configurtion utilisée est la même sur R1)
+
 ---
 
 
@@ -584,6 +588,14 @@ Nous utilisons le mode tunnel comme démontrer dans la configuration utilisé da
 ---
 
 **Réponse :**  
+
+Avec ESP, le paquet en entier est chiffré en mode tunnel. C'est-à-dire l'entête IP, les données et l'ESP trailer.
+
+C.F. la slide du cours sur ESP :
+
+![ESP-slide](./images/slide-esp.png)
+
+L'algorithme de chiffrement paramétré et utilisé est le chiffrement AES avec une clé de 192 bits.
 
 ---
 
