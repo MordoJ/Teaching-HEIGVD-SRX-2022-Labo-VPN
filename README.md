@@ -253,6 +253,23 @@ Vous pouvez consulter l’état de votre configuration IKE avec les commandes su
 
 **Réponse :**  
 
+Policy de RX1 :
+
+```shell
+RX1#show crypto isakmp policy
+
+Global IKE policy
+Protection suite of priority 20
+        encryption algorithm:   AES - Advanced Encryption Standard (256 bit keys).
+        hash algorithm:         Secure Hash Standard
+        authentication method:  Pre-Shared Key
+        Diffie-Hellman group:   #5 (1536 bit)
+        lifetime:               1800 seconds, no volume limit
+RX1#
+```
+
+Policy de RX2 :
+
 ```shell
 RX2#show crypto isakmp policy
 
@@ -273,6 +290,10 @@ RX2#
 ```
 
 Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
 
 ---
 
@@ -282,6 +303,32 @@ Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, co
 ---
 
 **Réponse :**  
+
+Key de RX1 :
+
+```shell
+RX1#show crypto isakmp key
+Keyring      Hostname/Address                            Preshared Key
+
+default      193.200.200.1                               cisco-1
+RX1#
+```
+
+Key de RX2 :
+
+```shell
+RX2#show crypto isakmp key
+Keyring      Hostname/Address                            Preshared Key
+
+default      193.100.100.1                               cisco-1
+RX2#
+```
+
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
 
 ---
 
@@ -341,6 +388,77 @@ show access-list TO-CRYPT
 show crypto map
 ```
 
+---
+Etat actuel de la configuration IPsec sur RX1 :
+
+```shell
+RX1#show crypto ipsec security-association
+Security association lifetime: 2560 kilobytes/300 seconds
+
+RX1#show crypto ipsec transform-set
+Transform set default: { esp-aes esp-sha-hmac  }
+   will negotiate = { Transport,  },
+
+Transform set STRONG: { esp-192-aes esp-sha-hmac  }
+   will negotiate = { Tunnel,  },
+
+RX1#show access-list TO-CRYPT
+Extended IP access list TO-CRYPT
+    10 permit ip 172.16.1.0 0.0.0.255 172.17.1.0 0.0.0.255
+RX1#show crypto map
+Crypto Map IPv4 "MY-CRYPTO" 10 ipsec-isakmp
+        Peer = 193.200.200.1
+        Extended IP access list TO-CRYPT
+            access-list TO-CRYPT permit ip 172.16.1.0 0.0.0.255 172.17.1.0 0.0.0.255
+        Security association lifetime: 2560 kilobytes/300 seconds
+        Security association idletime: 900 seconds
+        Responder-Only (Y/N): N
+        PFS (Y/N): N
+        Mixed-mode : Disabled
+        Transform sets={
+                STRONG:  { esp-192-aes esp-sha-hmac  } ,
+        }
+        Interfaces using crypto map MY-CRYPTO:
+        Interfaces using crypto map NiStTeSt1:
+RX1#
+```
+
+Etat actuel de la configuration IPsec sur RX2 :
+  
+```shell
+RX2#show crypto ipsec security-association
+Security association lifetime: 2560 kilobytes/300 seconds
+
+RX2#show crypto ipsec transform-set
+Transform set default: { esp-aes esp-sha-hmac  }
+   will negotiate = { Transport,  },
+
+Transform set STRONG: { esp-192-aes esp-sha-hmac  }
+   will negotiate = { Tunnel,  },
+
+RX2#show access-list TO-CRYPT
+Extended IP access list TO-CRYPT
+    10 permit ip 172.17.1.0 0.0.0.255 172.16.1.0 0.0.0.255
+RX2#show crypto map
+Crypto Map IPv4 "MY-CRYPTO" 10 ipsec-isakmp
+        Peer = 193.100.100.1
+        Extended IP access list TO-CRYPT
+            access-list TO-CRYPT permit ip 172.17.1.0 0.0.0.255 172.16.1.0 0.0.0.255
+        Security association lifetime: 2560 kilobytes/300 seconds
+        Security association idletime: 900 seconds
+        Responder-Only (Y/N): N
+        PFS (Y/N): N
+        Mixed-mode : Disabled
+        Transform sets={
+                STRONG:  { esp-192-aes esp-sha-hmac  } ,
+        }
+        Interfaces using crypto map MY-CRYPTO:
+        Interfaces using crypto map NiStTeSt1:
+RX2#
+```
+
+---
+
 ## Activation IPsec & test
 
 Pour activer cette configuration IKE & IPsec il faut appliquer le « crypto map » sur l’interface de sortie du trafic où vous voulez que l’encryption prenne place. 
@@ -375,6 +493,31 @@ Pensez à démarrer votre sniffer sur la sortie du routeur R2 vers internet avan
 ---
 
 **Réponse :**  
+
+Les requêtes ICMP envoyées du client VPCS vers la loopback du routeur RX1 sont correctements reçues par le routeur :
+
+![ping-rx1](./images/ping-rx1-after-ISAKMP.png)
+
+Pourtant, lorsqu'on vérifie les paquets sniffés sur la sortie du routeur RX2 vers internet, on ne reçoit aucun paquet ICMP, mais des paquets ESP.
+
+![icmp-request-transformed-in-encrypted-ESP](./images/icmp-request-transformed-in-encrypted-ESP.png)
+
+Par ailleurs, on peut voir que, juste avant les paquets ESP, il y a des paquets ISAKMP qui sont envoyés vers le routeur RX1 pour initialiser la session IKE.
+
+![isakmp-request-sent-to-rx1](./images/isakmp-request-sent-to-rx1.png)
+
+
+Définition ESP :
+définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
+
+Définition requête ISAKMP:
+définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
+
+Pourquoi ICMP est convertie en ESP :
+définition, définition, définition, définition, définition, définition, définition, définition, définition, définition, définition.
+
+etc...
+
 
 ---
 
