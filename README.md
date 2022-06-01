@@ -518,7 +518,28 @@ Un fichier `.pcapng` a été sauvegardé dans le dossier [`files`](./files/ICMP_
 
 ---
 
-**Réponse :**  
+**Réponse :** 
+L'Internet Key Exchange (IKE) utilisé par IPSec comprend deux phases. Chacune de ces phases nécessite la configuration d'une durée de vie basée sur le temps, car chaque clé peut être potentiellement brute-forcée.
+
+Ainsi, pour limiter la portée d'une compromission de clé potentielle, IPSec utilise des timers pour effectuer des opérations de "rekey" (changement de clé).
+
+De ce fait, si un brute-force a été effectué sur une clé, seulement, par défaut, 8 heures de données sont compromises.
+
+De plus, les clés utilisées dans chaque sens sont différentes, donc si une clé est trouvé, c'est seulement 8 heures d'un seul côté de la discussion qui est compromise.
+
+IKE :
+- `lifetime` est le temps de validité d'une SA durant la phase 1. Une fois expirée, une nouvelle négotiation de clé doit être initiée.
+
+- `keepalive` est la durée d'attente entre les messages de "dead peer detection" (DPD) envoyés par le routeur, afin de vérifier que le peer est toujours connecté pendant la négociation de clé. On peut aussi préciser le nombre de tentatives.
+
+IPsec :
+- `lifetime` est le temps de validité de la SA ou la taille de données échangées avant de refaire la négociation de clé.
+
+- `idletime` est la durée d'inactivité maximale d'une SA avant qu'elle soit supprimée.
+
+Sources :
+- [StackExchange](https://networkengineering.stackexchange.com/questions/62546/ipsec-vpn-timers-query)
+- [Meraki](https://documentation.meraki.com/MX/Site-to-site_VPN/IPsec_VPN_Lifetimes)
 
 ---
 
