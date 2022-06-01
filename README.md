@@ -518,6 +518,7 @@ définition, définition, définition, définition, définition, définition, d�
 
 etc...
 
+Un fichier `.pcapng` a été sauvegardé dans le dossier [`files`](./files/ICMP_after_encryption.pcapng) pour voir en détail le trafic récupéré sur la sortie du routeur.
 
 ---
 
