@@ -555,6 +555,14 @@ En vous appuyant sur les notions vues en cours et vos observations en laboratoir
 
 **Réponse :**  
 
+Nous utilisons le protocole IKE avec ISAKMP pour l'établissmenet des SAs et des clés.
+
+Ainsi que le protocole ESP (Encapsulation Security Payload) pour l'encapsulation des paquets comme définit lors de la configuration.
+
+Les protocoles sont visibles dans la `crypto map` :
+
+![crypto-map](./images/proof-protocols-used.png)
+
 ---
 
 
