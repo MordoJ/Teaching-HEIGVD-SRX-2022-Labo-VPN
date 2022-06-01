@@ -325,11 +325,7 @@ default      193.100.100.1                               cisco-1
 RX2#
 ```
 
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+La commande affiche la clé qui est partagée entre les deux routeurs. Dans notre cas, c'est la clé «_cisco-1_».
 
 ---
 
