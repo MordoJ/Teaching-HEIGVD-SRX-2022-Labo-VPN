@@ -289,11 +289,12 @@ Protection suite of priority 20
 RX2#
 ```
 
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
-Commentaire, commentaire, commentaire, commentaire, commentaire, commentaire, commentaire.
+ISAKMP permet l'établissement d'une connexion entre les deux routeurs.\
+Les _policy_ définissent les configurations de chiffrement et de sécurité utilisées pour l'échange de données.
+
+On peut observer que RX2 possèdes deux configurations différentes avec des niveaux de priorité différents alors que RX1 n'en possède qu'une.
+
+La connexion établie entre les deux routeurs est effectuée avec l'encryption AES, car c'est la seule configuration que les routeurs ont en commun (= la priority 20 de RX2), même si l'autre configuration, avec _Triple-DES_ a une priorité plus élevée.
 
 ---
 
