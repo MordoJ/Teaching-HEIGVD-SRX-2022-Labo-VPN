@@ -540,6 +540,7 @@ IPsec :
 Sources :
 - [StackExchange](https://networkengineering.stackexchange.com/questions/62546/ipsec-vpn-timers-query)
 - [Meraki](https://documentation.meraki.com/MX/Site-to-site_VPN/IPsec_VPN_Lifetimes)
+- [Doc cisco](https://www.cisco.com/c/en/us/td/docs/net_mgmt/vpn_solutions_center/2-0/ip_security/provisioning/guide/IPsecPGC.html#wp1003995)
 
 ---
 
@@ -595,7 +596,7 @@ C.F. la slide du cours sur ESP :
 
 ![ESP-slide](./images/slide-esp.png)
 
-L'algorithme de chiffrement paramétré et utilisé est le chiffrement AES avec une clé de 192 bits.
+L'algorithme cryptographique paramétré et utilisé est le chiffrement AES avec une clé de 192 bits.
 
 ---
 
@@ -604,7 +605,13 @@ L'algorithme de chiffrement paramétré et utilisé est le chiffrement AES avec 
 
 ---
 
-**Réponse :**  
+**Réponse :** 
+
+Avec ESP en mode tunnel, les parties authentifiées sont l'ESP header, l'entête IP originale, les données et le ESP trailer.
+
+![tunnel-mode-slide](./images/tunnel-mode-slide.png)
+
+L'algorithme cryptographique utilisé pour l'authentification est le SHA-1 (HMAC-160 variant).
 
 ---
 
@@ -614,5 +621,11 @@ L'algorithme de chiffrement paramétré et utilisé est le chiffrement AES avec 
 ---
 
 **Réponse :**  
+
+L'intégrité du paquet est garantie et assurée par un en-queue ajouté à la fin du paquet appelé `ESP auth`.
+
+Donc, les parties protégées sont l'ESP header, l'entête IP originale, les données et le ESP trailer.
+
+L'algorithme utilisé pour l'intégrité du paquet est le SHA-1 (HMAC-160 variant) comme expliqué dans la [documentation Cisco](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_vpnips/configuration/xe-3s/sec-sec-for-vpns-w-ipsec-xe-3s-book/sec-cfg-vpn-ipsec.html).
 
 ---
