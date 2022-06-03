@@ -523,7 +523,7 @@ L'Internet Key Exchange (IKE) utilisé par IPSec comprend deux phases. Chacune d
 
 Ainsi, pour limiter la portée d'une compromission de clé potentielle, IPSec utilise des timers pour effectuer des opérations de "rekey" (changement de clé).
 
-De ce fait, si un brute-force a été effectué sur une clé, seulement, par défaut, 8 heures de données sont compromises.
+De ce fait, si un brute-force a été effectué sur une clé, par défaut seulement 8 heures de données sont compromises.
 
 De plus, les clés utilisées dans chaque sens sont différentes. Cela signifie que si une clé est trouvée c'est seulement 8 heures d'un seul côté de la discussion qui est compromis.
 
