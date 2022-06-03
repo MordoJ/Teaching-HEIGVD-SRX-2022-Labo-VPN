@@ -112,7 +112,7 @@ Nous n'avons eu aucun problème. Tous les appareils sont bel et bien activés et
 
 ![Etat des interfaces](images/etat-interfaces.png)
 
-Par ailleurs, nous avons vérifié que le serveur DHCP soit configuré correctement et avons donner une adresse à la machine VPC à l'aide du DHCP.
+Par ailleurs, nous avons vérifié que le serveur DHCP soit configuré correctement et avons donné une adresse à la machine VPC à l'aide du DHCP.
 
 ![IP VPC](images/ip-vpc.png)
 
@@ -292,9 +292,9 @@ RX2#
 ISAKMP permet l'établissement d'une connexion entre les deux routeurs.\
 Les _policy_ définissent les configurations de chiffrement et de sécurité utilisées pour l'échange de données.
 
-On peut observer que RX2 possèdes deux configurations différentes avec des niveaux de priorité différents alors que RX1 n'en possède qu'une.
+On peut observer que RX2 possède deux configurations différentes avec des niveaux de priorité différents alors que RX1 n'en possède qu'une.
 
-La connexion établie entre les deux routeurs est effectuée avec l'encryption AES, car c'est la seule configuration que les routeurs ont en commun (= la priority 20 de RX2), même si l'autre configuration, avec _Triple-DES_ a une priorité plus élevée.
+La connexion établie entre les deux routeurs est effectuée avec l'encryption AES car c'est la seule configuration que les routeurs ont en commun (= la priority 20 de RX2), même si l'autre configuration avec _Triple-DES_ a une priorité plus élevée.
 
 ---
 
@@ -491,7 +491,7 @@ Pensez à démarrer votre sniffer sur la sortie du routeur R2 vers internet avan
 
 **Réponse :**  
 
-Les requêtes ICMP envoyées du client VPCS vers la loopback du routeur RX1 sont correctements reçues par le routeur :
+Les requêtes ICMP envoyées du client VPCS vers la loopback du routeur RX1 sont correctement reçues par le routeur :
 
 ![ping-rx1](./images/ping-rx1-after-ISAKMP.png)
 
@@ -499,14 +499,14 @@ Pourtant, lorsqu'on vérifie les paquets sniffés sur la sortie du routeur RX2 v
 
 ![icmp-request-transformed-in-encrypted-ESP](./images/icmp-request-transformed-in-encrypted-ESP.png)
 
-Par ailleurs, on peut voir que, juste avant les paquets ESP, il y a des paquets ISAKMP qui sont envoyés vers le routeur RX1 pour initialiser la session IKE.\
+Par ailleurs, on peut voir que juste avant les paquets ESP il y a des paquets ISAKMP qui sont envoyés vers le routeur RX1 pour initialiser la session IKE.\
 Tout d'abord en _Main Mode_, puis en _Quick Mode_.
 
 ![isakmp-request-sent-to-rx1](./images/isakmp-request-sent-to-rx1.png)
 
 Les requêtes ICMP du client sont encapsulées dans des paquets ESP avec un payload chiffré.
 
-Ceux-ci sont reçus par le routeur RX1 et déchiffrés, c'est pour ça qu'on voit les vraies requêtes ICMP sur le debug.
+Ceux-ci sont reçus par le routeur RX1 et déchiffrés, c'est pour cela que l'on voit les vraies requêtes ICMP sur le debug.
 
 La connexion IPSec est correctement établie et fonctionnelle.
 
@@ -525,7 +525,7 @@ Ainsi, pour limiter la portée d'une compromission de clé potentielle, IPSec ut
 
 De ce fait, si un brute-force a été effectué sur une clé, seulement, par défaut, 8 heures de données sont compromises.
 
-De plus, les clés utilisées dans chaque sens sont différentes, donc si une clé est trouvé, c'est seulement 8 heures d'un seul côté de la discussion qui est compromise.
+De plus, les clés utilisées dans chaque sens sont différentes. Cela signifie que si une clé est trouvée c'est seulement 8 heures d'un seul côté de la discussion qui est compromis.
 
 IKE :
 - `lifetime` est le temps de validité d'une SA durant la phase 1. Une fois expirée, une nouvelle négotiation de clé doit être initiée.
@@ -564,7 +564,7 @@ Les protocoles sont visibles dans la `crypto map` :
 
 ![crypto-map-protocol-used](./images/proof-protocols-used.png)
 
-(La configurtion utilisée est la même sur R1)
+(La configuration utilisée est la même sur R1)
 
 ---
 
@@ -575,7 +575,7 @@ Les protocoles sont visibles dans la `crypto map` :
 
 **Réponse :**  
 
-Nous utilisons le mode tunnel comme démontrer dans la configuration utilisé dans la `crypto map` et ceux disponibles dans la `ipsec transform-set`. :
+Nous utilisons le mode tunnel comme démontré dans la configuration utilisée dans la `crypto map` et ceux disponibles dans la `ipsec transform-set`. :
 
 ![crypto-map-mode-tunnel](./images/using-tunnel.png)
 
