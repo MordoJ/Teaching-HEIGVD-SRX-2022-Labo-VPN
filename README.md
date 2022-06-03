@@ -579,7 +579,7 @@ Nous utilisons le mode tunnel comme démontré dans la configuration utilisée d
 
 ![crypto-map-mode-tunnel](./images/using-tunnel.png)
 
-(La configurtion utilisée est la même sur R1)
+(La configuration utilisée est la même sur R1)
 
 ---
 
